@@ -1,0 +1,21 @@
+<li>
+  <div class="snake-card">
+    <button>Delete</button>
+    <div class="card-info">
+      <img
+        src="{{ snake.imgUrl }}"
+        alt="picture of ${{ snake.name }} the cornsnake"
+      />
+      <div class="card-text">
+        <p><span>Name:</span> {{ snake.name }}</p>
+        <p><span>ID:</span> {{ snake.breederId }}</p>
+        <p><span>Gender:</span> {{ snake.gender }}</p>
+        <!-- <p *ngIf="lastMeal?.date"><span>Last Meal:</span> {{ lastMeal?.date }}</p>
+        <p *ngIf="nextMeal"><span>Meal Frequency:</span> {{ nextMeal }}</p>
+        <p *ngIf="mealSize"><span>Meal Size:</span> {{ mealSize }}</p>
+        <p *ngIf="lastNote"><span>Last Note:</span> {{ lastNote }}</p>
+       <a routerLink="/snakes/{{ snake.id }}">More Info</a> -->
+      </div>
+    </div>
+  </div>
+</li>
