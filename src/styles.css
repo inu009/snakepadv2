@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+:root {
+  --dark-orange: hsl(21, 100%, 50%);
+  --brite-orange: hsl(31, 96%, 49%);
+  --dull-orange: hsl(36, 95%, 59%);
+  --dull-teal: hsl(181, 63%, 39%);
+  --brite-teal: hsl(181, 100%, 26%);
+  --dark-teal: hsl(181, 100%, 19%);
+  --grey: hsl(60, 0%, 80%);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
