@@ -1,0 +1,8 @@
+h1 {
+  font-family: "Oswald", sans-serif;
+  font-size: 36px;
+  margin-bottom: 48px;
+  background-color: var(--dark-teal);
+  padding: 16px;
+  color: white;
+}

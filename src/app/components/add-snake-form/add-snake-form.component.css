@@ -1,0 +1,55 @@
+form {
+  margin: auto;
+  width: 50%;
+}
+
+label {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  color: var(--dark-teal);
+  font-size: 20px;
+}
+
+input {
+  padding: 8px;
+  width: 300px;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
+select {
+  font-size: 18px;
+  padding: 1em 1.5em;
+}
+
+.custom-select {
+  position: relative;
+}
+
+/* .custom-arrow {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  display: block;
+  background: var(--brite-orange);
+  height: 100%;
+  width: 2rem;
+  pointer-events: none;
+} */
+
+button {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  padding: 8px;
+  background-color: var(--grey);
+  border: none;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: var(--dull-teal);
+}
