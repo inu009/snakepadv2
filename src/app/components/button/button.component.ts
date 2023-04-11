@@ -10,7 +10,6 @@ export class ButtonComponent {
   @Output() buttonClick = new EventEmitter();
 
   onClick() {
-    console.log('please');
     this.buttonClick.emit();
   }
 }

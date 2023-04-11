@@ -1,0 +1,18 @@
+<div class="snake-page-container">
+  <div class="snake-page-header">
+    <img src="{{ snake.imgUrl }}" alt="snake icon" />
+    <div>
+      <p><span>Name:</span> {{ snake.name }}</p>
+      <p><span>ID:</span> {{ snake.breederId }}</p>
+      <p><span>Gender:</span> {{ snake.gender }}</p>
+      <p *ngIf="lastMeal"><span>Last Meal:</span>{{ lastMeal }}</p>
+      <p *ngIf="mealFrequency">
+        <span>Meal Frequency:</span> {{ mealFrequency }}
+      </p>
+      <p><span>Meal Size:</span> {{ mealSize }}</p>
+      <p *ngIf="lastWeight">
+        <span>Current Weight:</span> {{ lastWeight }} grams
+      </p>
+    </div>
+  </div>
+</div>

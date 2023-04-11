@@ -1,8 +1,35 @@
+header {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--dark-teal);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1000px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1,
+  app-nav-bar,
+  app-auth-button {
+    margin-left: 32px;
+    margin-bottom: 16px;
+  }
+}
+
 h1 {
   font-family: "Oswald", sans-serif;
   font-size: 36px;
-  margin-bottom: 48px;
+  margin: 18px;
   background-color: var(--dark-teal);
   padding: 16px;
   color: white;
+}
+
+app-nav-bar {
+  margin-left: 32px;
 }

@@ -29,4 +29,8 @@ export class SnakeService {
   deleteSnake(snake: Snake) {
     return this.http.delete<Snake>(`${this.apiUrl}/${snake.id}`);
   }
+
+  getSnakeById(id: number): Observable<Snake | undefined> {
+    return this.http.get<Snake>(`${this.apiUrl}/${id}`);
+  }
 }
