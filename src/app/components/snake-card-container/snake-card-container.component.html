@@ -1,5 +1,13 @@
 <ul>
   <li *ngFor="let snake of snakes">
-    <app-snake-card [snake]="snake"></app-snake-card>
+    <app-snake-card
+      [snake]="snake"
+      (buttonClick)="deleteSnake($event)"
+    ></app-snake-card>
   </li>
 </ul>
+<app-button
+  (buttonClick)="toggleAddSnake()"
+  text="{{ showAddSnake ? 'Close' : 'Add Snake' }}"
+></app-button>
+<app-add-snake-form (onAddSnake)="addSnake($event)"></app-add-snake-form>

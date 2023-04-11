@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
 
 @Component({
@@ -9,5 +9,11 @@ import { Snake } from 'src/assets/ultilities/models/snake.model';
 export class SnakeCardComponent implements OnInit {
   @Input() snake!: Snake;
 
+  @Output() buttonClick = new EventEmitter();
+
   ngOnInit() {}
+
+  onClick() {
+    this.buttonClick.emit(this.snake);
+  }
 }

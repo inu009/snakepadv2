@@ -1,5 +1,8 @@
 ul {
+  margin: auto;
+  margin-bottom: 32px;
+  width: 50%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 32px;
 }
