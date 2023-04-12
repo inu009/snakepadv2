@@ -13,6 +13,10 @@ import { ButtonComponent } from './components/button/button.component';
 import { SnakePageComponent } from './components/snake-page/snake-page.component';
 import { SnakePageInfoComponent } from './components/snake-page-info/snake-page-info.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { RecordAddFormComponent } from './components/record-add-form/record-add-form.component';
+import { RecordSelectComponent } from './components/record-select/record-select.component';
+import { RecordContainerComponent } from './components/record-container/record-container.component';
+import { RecordButtonComponent } from './components/record-button/record-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     SnakePageComponent,
     SnakePageInfoComponent,
     NavBarComponent,
+    RecordAddFormComponent,
+    RecordSelectComponent,
+    RecordContainerComponent,
+    RecordButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

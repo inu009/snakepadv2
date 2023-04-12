@@ -33,4 +33,40 @@ export class SnakeService {
   getSnakeById(id: number): Observable<Snake | undefined> {
     return this.http.get<Snake>(`${this.apiUrl}/${id}`);
   }
+
+  getMealSize(weight: number): string {
+    if (weight <= 15) {
+      return 'Pinky';
+    } else if (weight > 16 && weight <= 30) {
+      return 'Small Fuzzy';
+    } else if (weight > 31 && weight <= 50) {
+      return 'Regular Fuzzy';
+    } else if (weight > 51 && weight <= 90) {
+      return 'Hopper';
+    } else if (weight > 91 && weight <= 170) {
+      return 'Weaned';
+    } else if (weight > 171 && weight <= 400) {
+      return 'Adult';
+    } else {
+      return 'Jumbo';
+    }
+  }
+
+  getMealFrequency(weight: number): string {
+    if (weight <= 15) {
+      return 'Every 4 days';
+    } else if (weight > 16 && weight <= 30) {
+      return 'Every 7 days';
+    } else if (weight > 31 && weight <= 50) {
+      return 'Every 7 days';
+    } else if (weight > 51 && weight <= 90) {
+      return 'Every 7 days';
+    } else if (weight > 91 && weight <= 170) {
+      return 'Every 7 days';
+    } else if (weight > 171 && weight <= 400) {
+      return 'Every 10 days';
+    } else {
+      return 'Every 2 weeks';
+    }
+  }
 }

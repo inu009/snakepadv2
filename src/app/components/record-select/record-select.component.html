@@ -1,0 +1,57 @@
+<form *ngIf="showAddRecord" (ngSubmit)="onSubmit()">
+  <legend>Which Record:</legend>
+
+  <div class="radio-container">
+    <input
+      class="radio-input"
+      type="radio"
+      id="update"
+      name="record"
+      value="update"
+      [(ngModel)]="record"
+    />
+    <label class="radio-label" for="update">Update Snake</label>
+    <input
+      class="radio-input"
+      type="radio"
+      id="feeding"
+      name="record"
+      value="feeding"
+      checked
+      [(ngModel)]="record"
+    />
+    <label class="radio-label" for="feeding">Feeding</label>
+
+    <input
+      class="radio-input"
+      type="radio"
+      id="shed"
+      name="record"
+      value="shed"
+      [(ngModel)]="record"
+    />
+    <label class="radio-label" for="shed">Shed</label>
+
+    <input
+      class="radio-input"
+      type="radio"
+      id="weight"
+      name="record"
+      value="weight"
+      [(ngModel)]="record"
+    />
+    <label class="radio-label" for="weight">Weight</label>
+
+    <input
+      class="radio-input"
+      type="radio"
+      id="note"
+      name="record"
+      value="note"
+      [(ngModel)]="record"
+    />
+    <label class="radio-label" for="note">Note</label>
+
+    <button type="submit">Submit</button>
+  </div>
+</form>

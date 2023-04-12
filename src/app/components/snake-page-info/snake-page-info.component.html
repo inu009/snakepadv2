@@ -1,4 +1,4 @@
-<div class="snake-page-container">
+<div class="snake-page-container" *ngIf="snake">
   <div class="snake-page-header">
     <img src="{{ snake.imgUrl }}" alt="snake icon" />
     <div>
@@ -14,5 +14,75 @@
         <span>Current Weight:</span> {{ lastWeight }} grams
       </p>
     </div>
+  </div>
+</div>
+<div class="table-container">
+  <div>
+    <h2>Feeding History</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Food-Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feeding of feedings">
+          <td>{{ feeding.date }}</td>
+          <td>{{ feeding.item }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Shed History</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Observation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shed of sheds">
+          <td>{{ shed.date }}</td>
+          <td>{{ shed.observation }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Weight History</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Weight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let weight of weights">
+          <td>{{ weight.date }}</td>
+          <td>{{ weight.weight }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Notes</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let note of notes">
+          <td>{{ note.date }}</td>
+          <td>{{ note.note }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

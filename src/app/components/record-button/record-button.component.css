@@ -1,0 +1,11 @@
+button {
+  font-weight: bold;
+  background-color: var(--grey);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: var(--dull-teal);
+}

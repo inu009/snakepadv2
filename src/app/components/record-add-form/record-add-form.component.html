@@ -1,0 +1,134 @@
+<form *ngIf="record === 'feeding'" (ngSubmit)="onSubmitFeeding()">
+  <div>
+    <label for="feedingDate">Date</label>
+    <input
+      type="date"
+      id="feedingDate"
+      [(ngModel)]="feedingDate"
+      name="feedingDate"
+      required
+    />
+  </div>
+  <div>
+    <label for="food">Food-Item:</label>
+    <div class="custom-select">
+      <select name="food" id="food" [(ngModel)]="foodItem" required>
+        <option value="Pinky">Pinky</option>
+        <option value="Small Fuzzy">Small Fuzzy</option>
+        <option value="Regular Fuzzy">Regular Fuzzy</option>
+        <option value="Hopper">Hopper</option>
+        <option value="Weaned">Weaned</option>
+        <option value="Adult">Adult</option>
+        <option value="Jumbo">Jumbo</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<form *ngIf="record === 'shed'" (ngSubmit)="onSubmitShed()">
+  <label for="shedDate">Date</label>
+  <input
+    type="date"
+    id="shedDate"
+    [(ngModel)]="shedDate"
+    name="shedDate"
+    required
+  />
+  <label for="observation">Observation:</label>
+  <div class="custom-select">
+    <select
+      name="observation"
+      id="observation"
+      [(ngModel)]="observation"
+      required
+    >
+      <option value="Noticed">Noticed</option>
+      <option value="Shed">Shed</option>
+    </select>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<form *ngIf="record === 'weight'" (ngSubmit)="onSubmitWeight()">
+  <div>
+    <label for="weightDate">Date:</label>
+    <input
+      type="date"
+      name="weightDate"
+      id="weightDate"
+      [(ngModel)]="weightDate"
+      required
+    />
+  </div>
+  <div>
+    <label for="weight">Weight(in grams):</label>
+    <input
+      type="number"
+      name="weight"
+      id="weight"
+      [(ngModel)]="weight"
+      required
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<form *ngIf="record === 'note'" (ngSubmit)="onSubmitNote()">
+  <div>
+    <label for="noteDate">Date:</label>
+    <input
+      type="date"
+      name="noteDate"
+      id="noteDate"
+      [(ngModel)]="noteDate"
+      required
+    />
+  </div>
+  <div>
+    <label for="notes">Note:</label>
+    <textarea
+      name="note"
+      id="note"
+      [(ngModel)]="note"
+      name="note"
+      required
+    ></textarea>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<form *ngIf="record === 'update'" (ngSubmit)="onUpdateSnake()">
+  <div>
+    <label for="name">Owner:</label>
+    <input type="text" name="owner" [(ngModel)]="snake.owner" id="owner" />
+  </div>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" [(ngModel)]="snake.name" id="name" />
+  </div>
+  <div>
+    <label for="imgUrl">Image Url:</label>
+    <input type="text" name="imgUrl" [(ngModel)]="snake.imgUrl" id="imgUrl" />
+  </div>
+  <div>
+    <label for="breederId">Id:</label>
+    <input
+      type="text"
+      name="breederId"
+      [(ngModel)]="snake.breederId"
+      id="breederId"
+    />
+  </div>
+  <div>
+    <label for="gender">Gender:</label>
+    <div class="custom-select">
+      <select name="gender" [(ngModel)]="snake.gender" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit">Save</button>
+</form>

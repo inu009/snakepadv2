@@ -37,7 +37,6 @@ export class AddSnakeFormComponent {
         gender: this.gender,
         breederId: this.breederId,
       };
-      // console.log(newSnake);
       this.onAddSnake.emit(newSnake);
 
       this.owner = '';

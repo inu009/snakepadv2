@@ -1,0 +1,6 @@
+<app-record-button
+  (buttonClick)="toggleAddRecord()"
+  text="{{ showAddRecord ? 'Close' : 'Add Record' }}"
+></app-record-button>
+<app-record-select (onAddRecord)="storeRecord($event)"></app-record-select>
+<app-record-add-form [record]="record"></app-record-add-form>
