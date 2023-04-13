@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Feeding } from 'src/assets/ultilities/models/feeding.model';
 import { Note } from 'src/assets/ultilities/models/note.model';
 import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
 import { Weight } from 'src/assets/ultilities/models/weight.model';
 import { SnakeService } from 'src/assets/ultilities/services/snake.service';
+import { StateService } from 'src/assets/ultilities/services/state.service';
+import { UiService } from 'src/assets/ultilities/services/ui.service';
 
 @Component({
   selector: 'app-snake-page',
@@ -27,11 +30,16 @@ export class SnakePageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private snakeService: SnakeService
+    private snakeService: SnakeService,
+    private stateService: StateService
   ) {}
 
   ngOnInit(): void {
     this.getSnake();
+    this.stateService.actionSourceObervable.subscribe(() => {
+      console.log('here?');
+      this.getSnake();
+    });
   }
 
   getSnake() {

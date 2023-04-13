@@ -1,4 +1,7 @@
-<form *ngIf="record === 'feeding'" (ngSubmit)="onSubmitFeeding()">
+<form
+  *ngIf="showAddRecord && record === 'feeding'"
+  (ngSubmit)="onSubmitFeeding()"
+>
   <div>
     <label for="feedingDate">Date</label>
     <input
@@ -26,7 +29,7 @@
   <button type="submit">Submit</button>
 </form>
 
-<form *ngIf="record === 'shed'" (ngSubmit)="onSubmitShed()">
+<form *ngIf="showAddRecord && record === 'shed'" (ngSubmit)="onSubmitShed()">
   <label for="shedDate">Date</label>
   <input
     type="date"
@@ -50,7 +53,10 @@
   <button type="submit">Submit</button>
 </form>
 
-<form *ngIf="record === 'weight'" (ngSubmit)="onSubmitWeight()">
+<form
+  *ngIf="showAddRecord && record === 'weight'"
+  (ngSubmit)="onSubmitWeight()"
+>
   <div>
     <label for="weightDate">Date:</label>
     <input
@@ -74,7 +80,7 @@
   <button type="submit">Submit</button>
 </form>
 
-<form *ngIf="record === 'note'" (ngSubmit)="onSubmitNote()">
+<form *ngIf="showAddRecord && record === 'note'" (ngSubmit)="onSubmitNote()">
   <div>
     <label for="noteDate">Date:</label>
     <input
@@ -98,7 +104,7 @@
   <button type="submit">Submit</button>
 </form>
 
-<form *ngIf="record === 'update'" (ngSubmit)="onUpdateSnake()">
+<form *ngIf="showAddRecord && record === 'update'" (ngSubmit)="onUpdateSnake()">
   <div>
     <label for="name">Owner:</label>
     <input type="text" name="owner" [(ngModel)]="snake.owner" id="owner" />

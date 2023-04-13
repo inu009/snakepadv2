@@ -4,13 +4,14 @@ import { Note } from 'src/assets/ultilities/models/note.model';
 import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
 import { Weight } from 'src/assets/ultilities/models/weight.model';
+import { SnakeService } from 'src/assets/ultilities/services/snake.service';
 
 @Component({
   selector: 'app-snake-page-info',
   templateUrl: './snake-page-info.component.html',
   styleUrls: ['./snake-page-info.component.css'],
 })
-export class SnakePageInfoComponent {
+export class SnakePageInfoComponent implements OnInit {
   @Input() snake!: Snake;
   @Input() lastMeal?: string;
   @Input() lastNote?: string;
@@ -21,4 +22,8 @@ export class SnakePageInfoComponent {
   @Input() sheds!: Shed[];
   @Input() weights!: Weight[];
   @Input() notes!: Note[];
+
+  constructor(public snakeService: SnakeService) {}
+
+  ngOnInit(): void {}
 }

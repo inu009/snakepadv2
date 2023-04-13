@@ -7,6 +7,7 @@ import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
 import { Weight } from 'src/assets/ultilities/models/weight.model';
 import { SnakeService } from 'src/assets/ultilities/services/snake.service';
+import { StateService } from 'src/assets/ultilities/services/state.service';
 import { UiService } from 'src/assets/ultilities/services/ui.service';
 
 @Component({
@@ -16,11 +17,6 @@ import { UiService } from 'src/assets/ultilities/services/ui.service';
 })
 export class RecordAddFormComponent {
   @Input() record: string = '';
-  @Output() onAddFeeding: EventEmitter<Feeding> = new EventEmitter();
-  @Output() onAddShed: EventEmitter<Shed> = new EventEmitter();
-  @Output() onAddWeight: EventEmitter<Weight> = new EventEmitter();
-  @Output() onAddNote: EventEmitter<Note> = new EventEmitter();
-  @Output() onUpdate: EventEmitter<Snake> = new EventEmitter();
 
   showAddRecord = false;
   subscription: Subscription;
@@ -35,10 +31,13 @@ export class RecordAddFormComponent {
   snakeId = Number(this.route.snapshot.paramMap.get('id'));
   snake!: Snake;
 
+  weightId?: number = 0;
+
   constructor(
     private uiService: UiService,
     private route: ActivatedRoute,
-    private snakeService: SnakeService
+    private snakeService: SnakeService,
+    private stateService: StateService
   ) {
     this.subscription = this.uiService
       .onToggle()
@@ -54,11 +53,10 @@ export class RecordAddFormComponent {
   }
 
   onUpdateSnake() {
-    // const updatedsnake: Snake = this.snake;
-    // this.snakeService.updateSnake(updatedsnake, this.snakeId).subscribe();
-    // this.onUpdate.emit(updatedsnake);
-
-    console.log('hi');
+    const updatedsnake: Snake = this.snake;
+    this.snakeService
+      .updateSnake(updatedsnake, this.snakeId)
+      .subscribe(() => this.stateService.buttonClicked());
   }
 
   onSubmitFeeding() {
@@ -67,7 +65,13 @@ export class RecordAddFormComponent {
       item: this.foodItem,
     };
 
-    this.onAddFeeding.emit(newFeeding);
+    this.snakeService
+      .createNewRecord(newFeeding, 'feeding')
+      .subscribe((feeding) => {
+        this.snakeService
+          .addRecordToSnake(feeding.id!, this.snakeId, 'feeding')
+          .subscribe(() => this.stateService.buttonClicked());
+      });
 
     this.feedingDate = '';
     this.foodItem = '';
@@ -78,7 +82,11 @@ export class RecordAddFormComponent {
       date: this.dateConverter(this.shedDate),
       observation: this.observation,
     };
-    this.onAddShed.emit(newShed);
+    this.snakeService.createNewRecord(newShed, 'shed').subscribe((shed) => {
+      this.snakeService
+        .addRecordToSnake(shed.id!, this.snakeId, 'shed')
+        .subscribe(() => this.stateService.buttonClicked());
+    });
 
     this.shedDate = '';
     this.observation = '';
@@ -89,10 +97,18 @@ export class RecordAddFormComponent {
       date: this.dateConverter(this.weightDate),
       weight: this.weight,
     };
-    this.onAddWeight.emit(newWeight);
+
+    this.snakeService
+      .createNewRecord(newWeight, 'weight')
+      .subscribe((weight) => {
+        this.snakeService
+          .addRecordToSnake(weight.id!, this.snakeId, 'weight')
+          .subscribe(() => this.stateService.buttonClicked());
+      });
 
     this.weightDate = '';
     this.weight = 0;
+    this.stateService.buttonClicked();
   }
 
   onSubmitNote() {
@@ -100,7 +116,11 @@ export class RecordAddFormComponent {
       date: this.dateConverter(this.noteDate),
       note: this.note,
     };
-    this.onAddNote.emit(newNote);
+    this.snakeService.createNewRecord(newNote, 'note').subscribe((note) => {
+      this.snakeService
+        .addRecordToSnake(note.id!, this.snakeId, 'note')
+        .subscribe(() => this.stateService.buttonClicked());
+    });
 
     this.noteDate = '';
     this.note = '';
