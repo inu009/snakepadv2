@@ -6,3 +6,20 @@ ul {
   grid-template-columns: 1fr 1fr;
   gap: 32px;
 }
+
+@media (max-width: 1000px) {
+  ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

@@ -23,7 +23,6 @@ export class SnakeService {
   constructor(private http: HttpClient) {}
 
   fetchSnakes(): Observable<Snake[]> {
-    console.log(environment.production);
     return this.http
       .get<Snake[]>(`${this.apiUrl}/api/snakes`)
       .pipe(
@@ -88,7 +87,7 @@ export class SnakeService {
     } else if (weight > 171 && weight <= 400) {
       return 'Adult';
     } else {
-      return 'Jumbo';
+      return 'Adult';
     }
   }
 
