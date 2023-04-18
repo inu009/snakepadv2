@@ -19,9 +19,6 @@ const httpOptions = {
 export class SnakeService {
   apiUrl: string = 'http://localhost:8080';
 
-  // public snake!: Snake;
-  // public snakes!: Snake[];
-
   constructor(private http: HttpClient) {}
 
   fetchSnakes(): Observable<Snake[]> {

@@ -37,7 +37,6 @@ export class SnakePageComponent implements OnInit {
   ngOnInit(): void {
     this.getSnake();
     this.stateService.actionSourceObervable.subscribe(() => {
-      console.log('here?');
       this.getSnake();
     });
   }

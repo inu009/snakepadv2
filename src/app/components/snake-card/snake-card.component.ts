@@ -20,7 +20,6 @@ export class SnakeCardComponent implements OnInit {
   constructor(private snakeService: SnakeService) {}
 
   ngOnInit() {
-    console.log(this.snake);
     if (this.snake.feedingsDto![Array.length - 1]) {
       this.getLastMeal();
     }
