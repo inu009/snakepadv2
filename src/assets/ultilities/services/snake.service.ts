@@ -6,6 +6,7 @@ import { Weight } from '../models/weight.model';
 import { Feeding } from '../models/feeding.model';
 import { Note } from '../models/note.model';
 import { Shed } from '../models/shed.model';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,11 +18,12 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class SnakeService {
-  apiUrl: string = 'http://localhost:8080';
+  apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   fetchSnakes(): Observable<Snake[]> {
+    console.log(environment.production);
     return this.http
       .get<Snake[]>(`${this.apiUrl}/api/snakes`)
       .pipe(
