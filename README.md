@@ -16,7 +16,7 @@ On this page you can add snakes to your collection, delete them, and just genera
 
 If you click more info you will be sent to the detail page of that particular snake:
 
-![webpage](https://i2.paste.pics/4e4ce71de419fc1f07e24655cf82b009.png)
+![webpage](https://i2.paste.pics/c7b7fedb62c48b2f7e11fb34380dd5e1.png)
 
 On this page you can update the snake's info and add new records using the Add record button.
 
