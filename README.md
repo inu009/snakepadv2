@@ -41,3 +41,7 @@ api/notes\
 api/weights\
 api/sheds\
 api/feedings
+
+This API will allow users to create a list of snakes. Each snake has many to one relationship to notes, weights, sheds, and feedings. A typical response to a singular snakes looks like this: 
+
+![webpage](https://i2.paste.pics/d47291328fc0721c180e7df96a6b2f37.png)
