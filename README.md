@@ -1,27 +1,47 @@
-# SnakePadV2
+# SnakePad
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
+Hello, welcome to my SnakePad project. As someone who has a growing collection of corn snakes, I need a way that was more user friendly and exicitng than a excel spreadsheet. This is a second iteration of the project, re-built from the ground up with logic improvements and better component usage. 
 
-## Development server
+## Deployed Link
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+https://snakepadhome.netlify.app/
 
-## Code scaffolding
+## Project Details
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Log in using Auth0 is intended, but for demo purposes it's been left out, on the homepage you're greeted to your very own list of snakes.
 
-## Build
+![webpage](https://i2.paste.pics/fa92dc54e02bc700225b2383860938b4.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+On this page you can add snakes to your collection, delete them, and just generally have access to high level information on your snakes.
 
-## Running unit tests
+If you click more info you will be sent to the detail page of that particular snake:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![webpage](https://i2.paste.pics/c7b7fedb62c48b2f7e11fb34380dd5e1.png)
 
-## Running end-to-end tests
+On this page you can update the snake's info and add new records using the Add record button.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Technologies Used
 
-## Further help
+The front end for this project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The back end for this project was done using Spring-boot, deployed in heroku.
+
+### Back End Repo Link
+
+https://github.com/inu009/snaketrackerv2
+
+### Back End Deployed Link
+
+https://snake-tracker-api.herokuapp.com/
+
+Main API endpoints:
+
+api/snakes\
+api/notes\
+api/weights\
+api/sheds\
+api/feedings
+
+This API will allow users to create a list of snakes. Each snake has many to one relationship to notes, weights, sheds, and feedings. A typical response to a singular snakes looks like this: 
+
+![webpage](https://i2.paste.pics/d47291328fc0721c180e7df96a6b2f37.png)
