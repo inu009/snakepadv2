@@ -69,14 +69,16 @@ export class SnakePageComponent implements OnInit {
   }
 
   getLastMeal() {
-    this.lastMeal = this.snake.feedingsDto![Array.length - 1].date;
+    const index = this.snake.feedingsDto!.length - 1;
+    this.lastMeal = this.snake.feedingsDto![index].date;
   }
 
   getLastNote() {
-    this.lastWeight = this.snake.weightsDto![Array.length - 1].weight;
+    this.lastNote = this.snake.notesDto![Array.length - 1].note;
   }
 
   getLastWeight() {
-    this.lastWeight = this.snake.weightsDto![Array.length - 1].weight;
+    const index = this.snake.weightsDto!.length - 1;
+    this.lastWeight = this.snake.weightsDto![index].weight;
   }
 }
