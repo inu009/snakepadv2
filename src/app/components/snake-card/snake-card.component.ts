@@ -39,11 +39,13 @@ export class SnakeCardComponent implements OnInit {
   }
 
   getLastMeal() {
-    this.lastMeal = this.snake.feedingsDto![Array.length - 1].date;
+    let lastIndex = this.snake.feedingsDto!.length - 1;
+    this.lastMeal = this.snake.feedingsDto![lastIndex].date;
   }
 
   getLastNote() {
-    this.lastNote = this.snake.notesDto![Array.length - 1].note;
+    let lastIndex = this.snake.notesDto!.length - 1;
+    this.lastNote = this.snake.notesDto![lastIndex].note;
   }
 
   getLastWeight() {
