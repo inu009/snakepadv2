@@ -101,7 +101,7 @@ export class SnakeService {
     } else if (weight > 51 && weight <= 90) {
       return 'Every 7 days';
     } else if (weight > 91 && weight <= 170) {
-      return 'Every 7 days';
+      return 'Every 10 days';
     } else if (weight > 171 && weight <= 400) {
       return 'Every 10 days';
     } else {
