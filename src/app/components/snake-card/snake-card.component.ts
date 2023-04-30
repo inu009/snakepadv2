@@ -49,6 +49,7 @@ export class SnakeCardComponent implements OnInit {
   }
 
   getLastWeight() {
-    return this.snake.weightsDto![Array.length - 1].weight;
+    let lastIndex = this.snake.weightsDto!.length - 1;
+    return this.snake.weightsDto![lastIndex].weight;
   }
 }
