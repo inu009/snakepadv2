@@ -1,6 +1,6 @@
 <li>
   <div class="snake-card">
-    <button (click)="onClick()">Delete</button>
+    <button class="delete-button" (click)="onClick()">Delete</button>
     <div class="card-info">
       <img
         src="{{ snake.imgUrl }}"
@@ -19,5 +19,6 @@
         <a routerLink="/snakes/{{ snake.id }}">More Info</a>
       </div>
     </div>
+    <button class="quick-feed" (click)="quickFeed()">Quick Feed</button>
   </div>
 </li>

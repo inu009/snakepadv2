@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Feeding } from 'src/assets/ultilities/models/feeding.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
 import { SnakeService } from 'src/assets/ultilities/services/snake.service';
 
@@ -14,6 +15,7 @@ export class SnakeCardComponent implements OnInit {
 
   lastMeal?: string;
   lastNote?: string;
+  lastWeight?: number;
   mealSize?: string;
   mealFrequency?: string;
 
@@ -27,10 +29,9 @@ export class SnakeCardComponent implements OnInit {
       this.getLastNote();
     }
     if (this.snake.weightsDto![Array.length - 1]) {
-      this.mealSize = this.snakeService.getMealSize(this.getLastWeight());
-      this.mealFrequency = this.snakeService.getMealFrequency(
-        this.getLastWeight()
-      );
+      this.getLastWeight();
+      this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
+      this.mealFrequency = this.snakeService.getMealFrequency(this.lastWeight!);
     }
   }
 
@@ -50,6 +51,30 @@ export class SnakeCardComponent implements OnInit {
 
   getLastWeight() {
     let lastIndex = this.snake.weightsDto!.length - 1;
-    return this.snake.weightsDto![lastIndex].weight;
+    this.lastWeight = this.snake.weightsDto![lastIndex].weight;
+  }
+
+  quickFeed() {
+    if (this.mealSize && this.lastWeight) {
+      const currentDate = new Date().toLocaleDateString('en-US');
+      const newFeeding: Feeding = {
+        date: currentDate,
+        item: this.mealSize,
+      };
+      this.snakeService
+        .createNewRecord(newFeeding, 'feeding')
+        .subscribe((feeding) => {
+          this.lastMeal = feeding.date;
+          this.snakeService
+            .addRecordToSnake(feeding.id!, this.snake.id!, 'feeding')
+            .subscribe(() => {
+              window.alert('Success!');
+            });
+        });
+    } else {
+      window.alert(
+        'You must add a have at least once feeding and weight on file to use the quick feed feature'
+      );
+    }
   }
 }
