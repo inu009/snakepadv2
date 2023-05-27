@@ -56,7 +56,8 @@ export class SnakeCardComponent implements OnInit {
 
   quickFeed() {
     if (this.mealSize && this.lastWeight) {
-      const currentDate = new Date().toLocaleDateString('en-US');
+      const currentDate = `0${new Date().toLocaleDateString('en-US')}`;
+
       const newFeeding: Feeding = {
         date: currentDate,
         item: this.mealSize,
