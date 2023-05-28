@@ -16,7 +16,7 @@
     </div>
   </div>
 </div>
-<div class="table-container">
+<div *ngIf="!editRecords" class="table-container">
   <div>
     <h2>Feeding History</h2>
     <table class="content-table">
@@ -86,3 +86,112 @@
     </table>
   </div>
 </div>
+
+<div *ngIf="editRecords" class="table-container">
+  <div>
+    <h2>Feeding History</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Food-Item</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feeding of feedings">
+          <td><input type="text" [(ngModel)]="feeding.date" /></td>
+          <td><input type="text" [(ngModel)]="feeding.item" /></td>
+          <td>
+            <button (click)="updateRecord('feeding', feeding)">Update</button>
+          </td>
+          <td>
+            <button (click)="deleteRecord('feeding', feeding.id!)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Shed History</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Observation</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shed of sheds">
+          <td><input type="text" [(ngModel)]="shed.date" /></td>
+          <td><input type="text" [(ngModel)]="shed.observation" /></td>
+          <td><button (click)="updateRecord('shed', shed)">Update</button></td>
+          <td>
+            <button (click)="deleteRecord('shed', shed.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Weight History</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Weight</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let weight of weights">
+          <td><input type="text" [(ngModel)]="weight.date" /></td>
+          <td><input type="text" [(ngModel)]="weight.weight" /></td>
+          <td>
+            <button (click)="updateRecord('weight', weight)">Update</button>
+          </td>
+          <td>
+            <button (click)="deleteRecord('weight', weight.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Notes</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Note</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let note of notes">
+          <td><input type="text" [(ngModel)]="note.date" /></td>
+          <td><input type="text" [(ngModel)]="note.note" /></td>
+          <td><button (click)="updateRecord('note', note)">Update</button></td>
+          <td>
+            <button (click)="deleteRecord('note', note.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<button
+  class="edit-toggle"
+  [disabled]="toggleEditRecordDisabled"
+  (click)="toggleEditRecords()"
+>
+  {{ editRecords ? "Done" : "Edit Records" }}
+</button>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Feeding } from 'src/assets/ultilities/models/feeding.model';
 import { Note } from 'src/assets/ultilities/models/note.model';
 import { Shed } from 'src/assets/ultilities/models/shed.model';
@@ -39,6 +38,12 @@ export class SnakePageComponent implements OnInit {
     this.stateService.actionSourceObervable.subscribe(() => {
       this.getSnake();
     });
+    this.stateService.updateClickObservable.subscribe(() => {
+      this.feedings = this.sortRecordArrayByDate(this.snake.feedingsDto!);
+      this.weights = this.sortRecordArrayByDate(this.snake.weightsDto!);
+      this.notes = this.sortRecordArrayByDate(this.snake.notesDto!);
+      this.sheds = this.sortRecordArrayByDate(this.snake.shedsDto!);
+    });
   }
 
   getSnake() {
@@ -47,11 +52,11 @@ export class SnakePageComponent implements OnInit {
         this.snake = snake;
         if (this.snake.feedingsDto![Array.length - 1]) {
           this.getLastMeal();
-          this.feedings = this.snake.feedingsDto!;
+          this.feedings = this.sortRecordArrayByDate(this.snake.feedingsDto!);
         }
         if (this.snake.notesDto![Array.length - 1]) {
           this.getLastNote();
-          this.notes = this.snake.notesDto!;
+          this.notes = this.sortRecordArrayByDate(this.snake.notesDto!);
         }
         if (this.snake.weightsDto![Array.length - 1]) {
           this.getLastWeight();
@@ -59,26 +64,42 @@ export class SnakePageComponent implements OnInit {
           this.mealFrequency = this.snakeService.getMealFrequency(
             this.lastWeight!
           );
-          this.weights = this.snake.weightsDto!;
+          this.weights = this.sortRecordArrayByDate(this.snake.weightsDto!);
         }
         if (this.snake.shedsDto![Array.length - 1]) {
-          this.sheds = this.snake.shedsDto!;
+          this.sheds = this.sortRecordArrayByDate(this.snake.shedsDto!);
         }
       }
     });
   }
 
+  sortRecordArrayByDate(
+    recordArray: Shed[] | Note[] | Feeding[] | Weight[]
+  ): any {
+    return recordArray.sort(
+      (recordA, recordB) =>
+        new Date(recordA.date).getTime() - new Date(recordB.date).getTime()
+    );
+  }
+
   getLastMeal() {
     const index = this.snake.feedingsDto!.length - 1;
-    this.lastMeal = this.snake.feedingsDto![index].date;
+    this.lastMeal = this.sortRecordArrayByDate(this.snake.feedingsDto!)[
+      index
+    ].date;
   }
 
   getLastNote() {
-    this.lastNote = this.snake.notesDto![Array.length - 1].note;
+    const index = this.snake.notesDto!.length - 1;
+    this.lastNote = this.sortRecordArrayByDate(this.snake.notesDto!)[
+      index
+    ].note;
   }
 
   getLastWeight() {
     const index = this.snake.weightsDto!.length - 1;
-    this.lastWeight = this.snake.weightsDto![index].weight;
+    this.lastWeight = this.sortRecordArrayByDate(this.snake.weightsDto!)[
+      index
+    ].weight;
   }
 }
