@@ -73,6 +73,26 @@ export class SnakeService {
     );
   }
 
+  updateRecord(
+    typeOfRecord: string,
+    record: Feeding | Weight | Note | Shed
+  ): Observable<Feeding | Weight | Note | Shed> {
+    return this.http.put<Feeding | Weight | Note | Shed>(
+      `${this.apiUrl}/api/${typeOfRecord}s/${record.id}`,
+      record,
+      httpOptions
+    );
+  }
+
+  deleteRecord(
+    typeOfRecord: string,
+    recordId: number
+  ): Observable<Feeding | Weight | Note | Shed> {
+    return this.http.delete<Feeding | Weight | Note | Shed>(
+      `${this.apiUrl}/api/${typeOfRecord}s/${recordId}`
+    );
+  }
+
   getMealSize(weight: number): string {
     if (weight <= 15) {
       return 'Pinky';
