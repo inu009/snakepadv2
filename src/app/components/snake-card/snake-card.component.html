@@ -19,6 +19,16 @@
         <a routerLink="/snakes/{{ snake.id }}">More Info</a>
       </div>
     </div>
-    <button class="quick-feed" (click)="quickFeed()">Quick Feed</button>
+    <div class="button-container">
+      <button class="quick-option-button" (click)="quickFeed()">
+        Quick Feed
+      </button>
+      <button class="quick-option-button" (click)="quickWeight()">
+        Quick Weight
+      </button>
+      <button class="quick-option-button" (click)="quickShed()">
+        Quick Shed
+      </button>
+    </div>
   </div>
 </li>

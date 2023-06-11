@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Feeding } from 'src/assets/ultilities/models/feeding.model';
+import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
+import { Weight } from 'src/assets/ultilities/models/weight.model';
 import { SnakeService } from 'src/assets/ultilities/services/snake.service';
 
 @Component({
@@ -75,6 +77,58 @@ export class SnakeCardComponent implements OnInit {
     } else {
       window.alert(
         'You must add a have at least once feeding and weight on file to use the quick feed feature'
+      );
+    }
+  }
+
+  quickWeight() {
+    const currentDate = `0${new Date().toLocaleDateString('en-US')}`;
+    const prompt = window.prompt('What is the new recorded weight');
+    if (prompt) {
+      const weightRecording = +prompt;
+      const newWeight: Weight = {
+        date: currentDate,
+        weight: weightRecording,
+      };
+      this.snakeService
+        .createNewRecord(newWeight, 'weight')
+        .subscribe((weight) => {
+          this.snakeService
+            .addRecordToSnake(weight.id!, this.snake.id!, 'weight')
+            .subscribe(() => {
+              window.alert('Success!');
+            });
+        });
+    }
+  }
+
+  quickShed() {
+    const currentDate = `0${new Date().toLocaleDateString('en-US')}`;
+    const prompt = window.prompt(
+      'Which shedding observation is to be recorded?'
+    );
+    if (
+      (prompt && prompt.toLowerCase() === 'shed') ||
+      (prompt && prompt.toLowerCase() === 'noticed')
+    ) {
+      const shedRecording = prompt.charAt(0).toUpperCase() + prompt.slice(1);
+      const newShed: Shed = {
+        date: currentDate,
+        observation: shedRecording,
+      };
+      this.snakeService.createNewRecord(newShed, 'shed').subscribe((shed) => {
+        this.snakeService
+          .addRecordToSnake(shed.id!, this.snake.id!, 'shed')
+          .subscribe(() => {
+            window.alert('Success!');
+          });
+      });
+    } else if (
+      (prompt && prompt.toLowerCase() !== 'shed') ||
+      (prompt && prompt.toLowerCase() !== 'noticed')
+    ) {
+      window.alert(
+        "Please submit a correct obeservation, either 'Noticed' or 'Shed' "
       );
     }
   }

@@ -38,15 +38,26 @@
   line-height: 1.2em;
 }
 
-.quick-feed {
+.button-container {
+  display: flex;
   position: absolute;
   left: 0;
   bottom: 0;
+}
+
+.quick-option-button {
   background-color: white;
   border: 2px solid var(--dark-teal);
   font-weight: bold;
   color: var(--dark-teal);
+}
+
+.quick-option-button:nth-child(1) {
   border-radius: 0 0 0 4px;
+}
+
+.quick-option-button + .quick-option-button {
+  margin-left: 8px;
 }
 
 .delete-button {
