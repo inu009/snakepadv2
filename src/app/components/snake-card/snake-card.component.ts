@@ -108,8 +108,8 @@ export class SnakeCardComponent implements OnInit {
       'Which shedding observation is to be recorded?'
     );
     if (
-      (prompt && prompt.toLowerCase() === 'shed') ||
-      (prompt && prompt.toLowerCase() === 'noticed')
+      prompt &&
+      (prompt.toLowerCase() === 'shed' || prompt.toLowerCase() === 'noticed')
     ) {
       const shedRecording = prompt.charAt(0).toUpperCase() + prompt.slice(1);
       const newShed: Shed = {
@@ -124,8 +124,8 @@ export class SnakeCardComponent implements OnInit {
           });
       });
     } else if (
-      (prompt && prompt.toLowerCase() !== 'shed') ||
-      (prompt && prompt.toLowerCase() !== 'noticed')
+      prompt &&
+      (prompt.toLowerCase() !== 'shed' || prompt.toLowerCase() !== 'noticed')
     ) {
       window.alert(
         "Please submit a correct obeservation, either 'Noticed' or 'Shed' "
