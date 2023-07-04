@@ -58,7 +58,8 @@ export class SnakeCardComponent implements OnInit {
 
   quickFeed() {
     if (this.mealSize && this.lastWeight) {
-      const currentDate = `0${new Date().toLocaleDateString('en-US')}`;
+      const rawDate = new Date().toLocaleDateString('en-US');
+      const currentDate = this.dateFormater(rawDate);
 
       const newFeeding: Feeding = {
         date: currentDate,
@@ -76,13 +77,15 @@ export class SnakeCardComponent implements OnInit {
         });
     } else {
       window.alert(
-        'You must add a have at least once feeding and weight on file to use the quick feed feature'
+        'You must add a have at least one feeding and weight on file to use the quick feed feature'
       );
     }
   }
 
   quickWeight() {
-    const currentDate = `0${new Date().toLocaleDateString('en-US')}`;
+    const rawDate = new Date().toLocaleDateString('en-US');
+    const currentDate = this.dateFormater(rawDate);
+
     const prompt = window.prompt('What is the new recorded weight');
     if (prompt) {
       const weightRecording = +prompt;
@@ -103,7 +106,9 @@ export class SnakeCardComponent implements OnInit {
   }
 
   quickShed() {
-    const currentDate = `0${new Date().toLocaleDateString('en-US')}`;
+    const rawDate = new Date().toLocaleDateString('en-US');
+    const currentDate = this.dateFormater(rawDate);
+
     const prompt = window.prompt(
       'Which shedding observation is to be recorded?'
     );
@@ -130,6 +135,14 @@ export class SnakeCardComponent implements OnInit {
       window.alert(
         "Please submit a correct obeservation, either 'Noticed' or 'Shed' "
       );
+    }
+  }
+
+  dateFormater(date: string) {
+    if (date.length === 8) {
+      return `0${date.slice(0, 2)}0${date.slice(2)}`;
+    } else {
+      return `0${date}`;
     }
   }
 }

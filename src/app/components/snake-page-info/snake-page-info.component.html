@@ -177,7 +177,7 @@
       <tbody>
         <tr *ngFor="let note of notes">
           <td><input type="text" [(ngModel)]="note.date" /></td>
-          <td><input type="text" [(ngModel)]="note.note" /></td>
+          <td><textarea type="text" [(ngModel)]="note.note"></textarea></td>
           <td><button (click)="updateRecord('note', note)">Update</button></td>
           <td>
             <button (click)="deleteRecord('note', note.id!)">Delete</button>

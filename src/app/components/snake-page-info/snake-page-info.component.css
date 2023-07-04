@@ -110,3 +110,7 @@ h2 {
 .edit-toggle:hover {
   background-color: var(--dull-teal);
 }
+
+input {
+  width: 72px;
+}
