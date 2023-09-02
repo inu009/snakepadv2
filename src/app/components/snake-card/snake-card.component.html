@@ -14,8 +14,11 @@
         <p *ngIf="mealFrequency">
           <span>Meal Frequency:</span> {{ mealFrequency }}
         </p>
+        <p *ngIf="lastMeal"><span>Next Meal:</span> {{ nextMeal }}</p>
         <p *ngIf="mealSize"><span>Meal Size:</span> {{ mealSize }}</p>
-        <p *ngIf="lastNote"><span>Last Note:</span> {{ lastNote }}</p>
+        <p *ngIf="lastNote">
+          <span>Last Note:</span> {{ formatLastNote(lastNote) }}
+        </p>
         <a routerLink="/snakes/{{ snake.id }}">More Info</a>
       </div>
     </div>

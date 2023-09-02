@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { last } from 'rxjs';
 import { Feeding } from 'src/assets/ultilities/models/feeding.model';
 import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
@@ -20,6 +21,7 @@ export class SnakeCardComponent implements OnInit {
   lastWeight?: number;
   mealSize?: string;
   mealFrequency?: string;
+  nextMeal?: string;
 
   constructor(private snakeService: SnakeService) {}
 
@@ -34,6 +36,12 @@ export class SnakeCardComponent implements OnInit {
       this.getLastWeight();
       this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
       this.mealFrequency = this.snakeService.getMealFrequency(this.lastWeight!);
+    }
+    if (this.lastMeal && this.mealFrequency) {
+      this.nextMeal = this.getNextFeedingDate(
+        this.lastMeal,
+        this.mealFrequency
+      );
     }
   }
 
@@ -54,6 +62,20 @@ export class SnakeCardComponent implements OnInit {
   getLastWeight() {
     let lastIndex = this.snake.weightsDto!.length - 1;
     this.lastWeight = this.snake.weightsDto![lastIndex].weight;
+  }
+
+  getNextFeedingDate(lastMeal: string, mealFrequency: string) {
+    const firstDate = new Date(lastMeal);
+    let daysToAdd: number;
+    if (mealFrequency.includes('days')) {
+      daysToAdd = +mealFrequency.substring(5, 8);
+    } else {
+      daysToAdd = 14;
+    }
+    const rawDate = new Date(
+      new Date(firstDate).setDate(firstDate.getDate() + daysToAdd)
+    ).toLocaleDateString('en-US');
+    return this.dateFormater(rawDate);
   }
 
   quickFeed() {
@@ -136,6 +158,12 @@ export class SnakeCardComponent implements OnInit {
         "Please submit a correct obeservation, either 'Noticed' or 'Shed' "
       );
     }
+  }
+
+  formatLastNote(note: string) {
+    if (note.length > 100) {
+      return `${note.substring(0, 100)}...`;
+    } else return note;
   }
 
   dateFormater(date: string) {

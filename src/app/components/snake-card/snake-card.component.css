@@ -4,8 +4,8 @@
   padding: 1rem;
   box-shadow: 0 2px 5px 0 hsla(181, 63%, 39%, 0.2);
   border-radius: 4px;
-  width: 450px;
-  height: 300px;
+  width: 500px;
+  height: 325px;
 }
 
 .card-info {
@@ -30,7 +30,7 @@
   color: var(--dark-teal);
 }
 .snake-card .card-text {
-  width: 250px;
+  width: 300px;
 }
 
 .card-text p {
