@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { last } from 'rxjs';
 import { Feeding } from 'src/assets/ultilities/models/feeding.model';
 import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
@@ -94,6 +93,7 @@ export class SnakeCardComponent implements OnInit {
           this.snakeService
             .addRecordToSnake(feeding.id!, this.snake.id!, 'feeding')
             .subscribe(() => {
+              this.refreshSnakeInfo();
               window.alert('Success!');
             });
         });
@@ -109,7 +109,7 @@ export class SnakeCardComponent implements OnInit {
     const currentDate = this.dateFormater(rawDate);
 
     const prompt = window.prompt('What is the new recorded weight');
-    if (prompt) {
+    if (prompt && +prompt) {
       const weightRecording = +prompt;
       const newWeight: Weight = {
         date: currentDate,
@@ -121,9 +121,13 @@ export class SnakeCardComponent implements OnInit {
           this.snakeService
             .addRecordToSnake(weight.id!, this.snake.id!, 'weight')
             .subscribe(() => {
+              this.lastWeight = weightRecording;
+              this.refreshSnakeInfo();
               window.alert('Success!');
             });
         });
+    } else if (prompt) {
+      window.alert('Please enter a number');
     }
   }
 
@@ -158,6 +162,12 @@ export class SnakeCardComponent implements OnInit {
         "Please submit a correct obeservation, either 'Noticed' or 'Shed' "
       );
     }
+  }
+
+  refreshSnakeInfo() {
+    this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
+    this.mealFrequency = this.snakeService.getMealFrequency(this.lastWeight!);
+    this.nextMeal = this.getNextFeedingDate(this.lastMeal!, this.mealFrequency);
   }
 
   formatLastNote(note: string) {
