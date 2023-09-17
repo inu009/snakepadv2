@@ -177,10 +177,10 @@ export class SnakeCardComponent implements OnInit {
   }
 
   dateFormater(date: string) {
-    if (date.length === 8) {
-      return `0${date.slice(0, 2)}0${date.slice(2)}`;
-    } else {
-      return `0${date}`;
-    }
+    const components = date.split('/');
+    const month = components[0].padStart(2, '0');
+    const day = components[1].padStart(2, '0');
+    const year = components[2];
+    return `${month}/${day}/${year}`;
   }
 }
