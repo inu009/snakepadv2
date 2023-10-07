@@ -17,6 +17,7 @@ import { RecordAddFormComponent } from './components/record-add-form/record-add-
 import { RecordSelectComponent } from './components/record-select/record-select.component';
 import { RecordContainerComponent } from './components/record-container/record-container.component';
 import { RecordButtonComponent } from './components/record-button/record-button.component';
+import { OverrideSetComponent } from './components/override-set/override-set.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RecordButtonComponent } from './components/record-button/record-button.
     RecordSelectComponent,
     RecordContainerComponent,
     RecordButtonComponent,
+    OverrideSetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

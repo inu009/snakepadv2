@@ -1,0 +1,48 @@
+<div class="override-form">
+  <div>
+    <app-record-button
+      (buttonClick)="toggleshowOverrideUI()"
+      text="{{ showOverrideUI ? 'Done' : 'Update Feeding Override' }}"
+    ></app-record-button>
+
+    <form *ngIf="showOverrideUI" (ngSubmit)="onSubmit()">
+      <div>
+        <p>Override frequency</p>
+        <input
+          type="checkbox"
+          name="frequencyOverride"
+          [(ngModel)]="feedingOverride!.frequencyOverride"
+        />
+        <div *ngIf="feedingOverride!.frequencyOverride">
+          <p>How many days?</p>
+          <input
+            type="number"
+            name="frequency"
+            [(ngModel)]="feedingOverride!.frequency"
+          />
+        </div>
+
+        <p>Override meal size</p>
+        <input
+          type="checkbox"
+          name="sizeOverride"
+          [(ngModel)]="feedingOverride!.sizeOverride"
+        />
+        <select
+          *ngIf="feedingOverride!.sizeOverride"
+          [(ngModel)]="feedingOverride!.mealSize"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <option value="Pinky">Pinky</option>
+          <option value="Small Fuzzy">Small Fuzzy</option>
+          <option value="Regular Fuzzy">Regular Fuzzy</option>
+          <option value="Hopper">Hopper</option>
+          <option value="Weaned">Weaned</option>
+          <option value="Adult">Adult</option>
+          <option value="Jumbo">Jumbo</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

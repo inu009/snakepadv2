@@ -2,6 +2,7 @@ import { Feeding } from './feeding.model';
 import { Note } from './note.model';
 import { Weight } from './weight.model';
 import { Shed } from './shed.model';
+import { FeedingOverride } from './feedingOverride.model';
 
 export type Snake = {
   id?: number;
@@ -14,4 +15,5 @@ export type Snake = {
   notesDto?: Note[];
   weightsDto?: Weight[];
   shedsDto?: Shed[];
+  feedingOverride?: FeedingOverride;
 };

@@ -7,6 +7,7 @@ import { Feeding } from '../models/feeding.model';
 import { Note } from '../models/note.model';
 import { Shed } from '../models/shed.model';
 import { environment } from 'src/environments/environment';
+import { FeedingOverride } from '../models/feedingOverride.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -80,6 +81,14 @@ export class SnakeService {
     return this.http.put<Feeding | Weight | Note | Shed>(
       `${this.apiUrl}/api/${typeOfRecord}s/${record.id}`,
       record,
+      httpOptions
+    );
+  }
+
+  updateFeedOveride(feedingOverride: FeedingOverride) {
+    return this.http.put<FeedingOverride>(
+      `${this.apiUrl}/api/feedingOverride/${feedingOverride.id}`,
+      feedingOverride,
       httpOptions
     );
   }
