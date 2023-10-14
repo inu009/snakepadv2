@@ -1,6 +1,9 @@
-form {
+/* form {
   margin: auto;
   width: 50%;
+} */
+* {
+  margin-left: 32px;
 }
 
 label {
@@ -12,16 +15,16 @@ label {
   font-size: 20px;
 }
 
-input {
+input,
+select {
   padding: 8px;
-  width: 300px;
   font-size: 18px;
   font-family: "Roboto", sans-serif;
 }
 
 select {
-  font-size: 18px;
   padding: 1em 1.5em;
+  margin-left: 64px;
 }
 
 .custom-select {
@@ -50,11 +53,13 @@ button {
   font-weight: bold;
 }
 
-app-record-button {
-  margin-top: 16px;
-  margin-bottom: 32px;
-}
-
 button:hover {
   background-color: var(--dull-teal);
+}
+
+.override-options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 4px;
 }

@@ -23,7 +23,7 @@ export class OverrideSetComponent implements OnInit {
     private uiService: UiService
   ) {
     this.subscription = this.uiService
-      .onToggle()
+      .onOverrideToggle()
       .subscribe((value) => (this.showOverrideUI = value));
   }
 
@@ -36,9 +36,14 @@ export class OverrideSetComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('hi');
-    console.log(this.feedingOverride);
-    if (this.feedingOverride)
-      this.snakeService.updateFeedOveride(this.feedingOverride).subscribe();
+    if (this.feedingOverride) {
+      this.snakeService
+        .updateFeedOveride(this.feedingOverride)
+        .subscribe(() => {
+          this.stateService.buttonClicked();
+          window.alert('Feeding override completed successfully!');
+          this.showOverrideUI = false;
+        });
+    }
   }
 }

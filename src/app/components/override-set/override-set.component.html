@@ -2,17 +2,20 @@
   <div>
     <app-record-button
       (buttonClick)="toggleshowOverrideUI()"
-      text="{{ showOverrideUI ? 'Done' : 'Update Feeding Override' }}"
+      text="{{ showOverrideUI ? 'Cancel' : 'Update Feeding Override' }}"
     ></app-record-button>
 
     <form *ngIf="showOverrideUI" (ngSubmit)="onSubmit()">
-      <div>
-        <p>Override frequency</p>
-        <input
-          type="checkbox"
-          name="frequencyOverride"
-          [(ngModel)]="feedingOverride!.frequencyOverride"
-        />
+      <div style="text-align: left">
+        <div class="override-options">
+          <label for="frequencyOverride">Override frequency</label>
+          <input
+            type="checkbox"
+            name="frequencyOverride"
+            [(ngModel)]="feedingOverride!.frequencyOverride"
+          />
+        </div>
+
         <div *ngIf="feedingOverride!.frequencyOverride">
           <p>How many days?</p>
           <input
@@ -21,18 +24,20 @@
             [(ngModel)]="feedingOverride!.frequency"
           />
         </div>
-
-        <p>Override meal size</p>
-        <input
-          type="checkbox"
-          name="sizeOverride"
-          [(ngModel)]="feedingOverride!.sizeOverride"
-        />
+        <div class="override-options">
+          <label for="sizeOverride">Override meal size</label>
+          <input
+            type="checkbox"
+            name="sizeOverride"
+            [(ngModel)]="feedingOverride!.sizeOverride"
+          />
+        </div>
         <select
           *ngIf="feedingOverride!.sizeOverride"
           [(ngModel)]="feedingOverride!.mealSize"
           [ngModelOptions]="{ standalone: true }"
         >
+          <option value="" disabled selected>Select a meal size</option>
           <option value="Pinky">Pinky</option>
           <option value="Small Fuzzy">Small Fuzzy</option>
           <option value="Regular Fuzzy">Regular Fuzzy</option>

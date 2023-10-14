@@ -10,6 +10,7 @@ export class UiService {
   private showOverrideUI: boolean = false;
   private editRecords: boolean = false;
   private subject = new Subject<any>();
+  private feedingOverrideSubject = new Subject<any>();
 
   toggleAddSnake(): void {
     this.showAddSnake = !this.showAddSnake;
@@ -27,10 +28,14 @@ export class UiService {
 
   toggleEditOverride(): void {
     this.showOverrideUI = !this.showOverrideUI;
-    this.subject.next(this.showOverrideUI);
+    this.feedingOverrideSubject.next(this.showOverrideUI);
   }
 
   onToggle(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  onOverrideToggle(): Observable<any> {
+    return this.feedingOverrideSubject.asObservable();
   }
 }
