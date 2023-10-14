@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Feeding } from 'src/assets/ultilities/models/feeding.model';
+import { FeedingOverride } from 'src/assets/ultilities/models/feedingOverride.model';
 import { Note } from 'src/assets/ultilities/models/note.model';
 import { Shed } from 'src/assets/ultilities/models/shed.model';
 import { Snake } from 'src/assets/ultilities/models/snake.model';
@@ -26,6 +27,7 @@ export class SnakePageComponent implements OnInit {
   weights: Weight[] = [];
   notes: Note[] = [];
   sheds: Shed[] = [];
+  feedingOverride?: FeedingOverride;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,6 +52,8 @@ export class SnakePageComponent implements OnInit {
     this.snakeService.getSnakeById(this.id).subscribe((snake) => {
       if (snake) {
         this.snake = snake;
+        this.feedingOverride = snake.feedingOverride;
+        console.log(this.feedingOverride);
         if (this.snake.feedingsDto![Array.length - 1]) {
           this.getLastMeal();
           this.feedings = this.sortRecordArrayByDate(this.snake.feedingsDto!);
@@ -60,10 +64,25 @@ export class SnakePageComponent implements OnInit {
         }
         if (this.snake.weightsDto![Array.length - 1]) {
           this.getLastWeight();
-          this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
-          this.mealFrequency = this.snakeService.getMealFrequency(
-            this.lastWeight!
-          );
+          if (
+            this.snake.feedingOverride?.sizeOverride &&
+            this.snake.feedingOverride?.mealSize
+          ) {
+            this.mealSize = this.snake.feedingOverride?.mealSize;
+          } else {
+            this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
+          }
+          if (
+            this.snake.feedingOverride?.frequencyOverride &&
+            this.snake.feedingOverride.frequency
+          ) {
+            const days = this.snake.feedingOverride.frequency;
+            this.mealFrequency = `Every ${days} days`;
+          } else {
+            this.mealFrequency = this.snakeService.getMealFrequency(
+              this.lastWeight!
+            );
+          }
           this.weights = this.sortRecordArrayByDate(this.snake.weightsDto!);
         }
         if (this.snake.shedsDto![Array.length - 1]) {

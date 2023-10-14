@@ -33,8 +33,25 @@ export class SnakeCardComponent implements OnInit {
     }
     if (this.snake.weightsDto![Array.length - 1]) {
       this.getLastWeight();
-      this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
-      this.mealFrequency = this.snakeService.getMealFrequency(this.lastWeight!);
+      if (
+        this.snake.feedingOverride!.sizeOverride &&
+        this.snake.feedingOverride!.mealSize
+      ) {
+        this.mealSize = this.snake.feedingOverride?.mealSize;
+      } else {
+        this.mealSize = this.snakeService.getMealSize(this.lastWeight!);
+      }
+      if (
+        this.snake.feedingOverride?.frequencyOverride &&
+        this.snake.feedingOverride.frequency
+      ) {
+        const days = this.snake.feedingOverride.frequency;
+        this.mealFrequency = `Every ${days} days`;
+      } else {
+        this.mealFrequency = this.snakeService.getMealFrequency(
+          this.lastWeight!
+        );
+      }
     }
     if (this.lastMeal && this.mealFrequency) {
       this.nextMeal = this.getNextFeedingDate(
